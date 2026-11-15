@@ -292,8 +292,8 @@ joaofogaca.com/
 │   │
 │   ├── pages/
 │   │   ├── index.astro
+│   │   ├── [lang].astro
 │   │   ├── [lang]/
-│   │   │   ├── index.astro
 │   │   │   ├── cv.astro
 │   │   │   ├── keys.astro
 │   │   │   └── blog/

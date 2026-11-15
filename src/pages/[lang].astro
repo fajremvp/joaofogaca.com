@@ -1,0 +1,59 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'pt' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const isPortuguese = Astro.params.lang === 'pt';
+const lang = isPortuguese ? 'pt-BR' : 'en';
+const currentPath = isPortuguese ? '/pt' : '/en';
+const otherPath = isPortuguese ? '/en' : '/pt';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+
+    <title>João Fogaça</title>
+    <link
+      rel="canonical"
+      href={`https://joaofogaca.com${currentPath}`}
+    />
+
+    <link
+      rel="alternate"
+      hreflang="pt-BR"
+      href="https://joaofogaca.com/pt"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://joaofogaca.com/en"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>João Fogaça</h1>
+
+      <p>
+        {isPortuguese
+          ? 'Site pessoal em construção.'
+          : 'Personal website under construction.'}
+      </p>
+
+      <nav aria-label={isPortuguese ? 'Idiomas' : 'Languages'}>
+        <a
+          href={otherPath}
+          lang={isPortuguese ? 'en' : 'pt-BR'}
+        >
+          {isPortuguese ? 'English' : 'Português'}
+        </a>
+      </nav>
+    </main>
+  </body>
+</html>
