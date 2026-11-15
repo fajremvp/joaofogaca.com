@@ -1,4 +1,4 @@
-function preferredLanguage(header) {
+export function preferredLanguage(header) {
   if (!header) return 'en';
 
   const preferences = header
