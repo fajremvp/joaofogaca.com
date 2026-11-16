@@ -120,8 +120,9 @@ O hub será extremamente minimalista, semelhante em simplicidade a uma página H
 **Direção visual:**
 
 - Coluna única, largura limitada e muito espaço em branco.
-- Tipografia legível e poucos elementos visuais.
-- Links simples, facilmente identificáveis.
+- Fundo branco e texto preto, independentemente da preferência normal de tema do sistema.
+- Tipografia padrão do navegador, sem fontes externas ou família tipográfica imposta.
+- Links simples, sublinhados e facilmente identificáveis.
 - Sem painéis complexos, animações de entrada, efeitos decorativos ou aparência de aplicativo.
 - Responsividade natural, com CSS mínimo.
 
