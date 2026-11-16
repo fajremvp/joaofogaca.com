@@ -113,7 +113,7 @@ O hub será extremamente minimalista, semelhante em simplicidade a uma página H
 **Conteúdo:**
 
 - Nome e identificação pessoal.
-- Links para as principais seções e alternância de idioma, definidos no Markdown de cada hub.
+- Links para as principais seções e alternância de idioma.
 - Contatos e perfis externos relevantes.
 - Link para o endereço onion existente.
 
@@ -178,7 +178,7 @@ A prioridade será o conteúdo, não a interface.
 
 - Links de títulos em formato compacto.
 - Datas e categorias discretas.
-- Ordenação cronológica, preferencialmente pelos artigos mais recentes.
+- Índices mantidos manualmente em Markdown, com publicações organizadas preferencialmente da mais recente para a mais antiga.
 - Navegação simples e responsiva.
 - Sem cartões grandes, imagens de capa obrigatórias, animações ou elementos decorativos excessivos.
 
@@ -275,13 +275,13 @@ joaofogaca.com/
 │   │   │   ├── pt/
 │   │   │   │   ├── hub.md
 │   │   │   │   ├── cv.md
-│   │   │   │   ├── consultorias.md
+│   │   │   │   ├── blog.md
 │   │   │   │   ├── pagamentos.md
 │   │   │   │   └── keys.md
 │   │   │   └── en/
 │   │   │       ├── hub.md
 │   │   │       ├── cv.md
-│   │   │       ├── consulting.md
+│   │   │       ├── blog.md
 │   │   │       ├── payments.md
 │   │   │       └── keys.md
 │   │   └── blog/
@@ -313,7 +313,6 @@ joaofogaca.com/
 │   │
 │   ├── styles/
 │   │   ├── base.css
-│   │   ├── hub.css
 │   │   ├── blog.css
 │   │   └── consulting.css
 │   │
@@ -329,11 +328,11 @@ joaofogaca.com/
 
 ### 5.1. Responsabilidades
 
-- **`src/content/`:** conteúdo editorial e institucional em Markdown, incluindo a apresentação e os links de navegação dos hubs.
-- **`src/pages/`:** definição das rotas, seleção do conteúdo por idioma, renderização e associação com os layouts.
+- **`src/content/`:** conteúdo das páginas institucionais, índices manuais do blog e artigos em Markdown, incluindo links de retorno ao início e troca de idioma, exceto na interface personalizada de consultoria.
+- **`src/pages/`:** definição das rotas, seleção e renderização do conteúdo e associação com os layouts, além da implementação das páginas personalizadas de consultoria.
 - **`src/layouts/`:** estruturas HTML reutilizáveis, sem impor uma identidade visual única.
 - **`src/styles/`:** estilos separados conforme a necessidade de cada seção.
-- **`src/content.config.ts`:** definição e validação das coleções de conteúdo.
+- **`src/content.config.ts`:** definição e carregamento das coleções de conteúdo, com validação quando necessária.
 - **`public/`:** recursos estáticos, certificados públicos, arquivos de verificação e configurações de publicação.
 - **`functions/`:** redirecionamentos HTTP executados pela Cloudflare.
 
@@ -345,9 +344,11 @@ O arquivo `src/pages/index.astro` servirá como fallback estático para a raiz, 
 
 ### 5.2. Conteúdo Markdown
 
-Utilizar Astro Content Collections com o carregador `glob()` para organizar os artigos e os textos institucionais.
+Utilizar Astro Content Collections com o carregador `glob()` para organizar os artigos e as páginas institucionais, exceto a interface personalizada de consultoria.
 
-As páginas institucionais podem ser escritas em Markdown sem frontmatter ou schema, com os metadados HTML definidos pelas rotas e layouts Astro. Os artigos do blog poderão utilizar frontmatter apenas para os dados necessários à organização, publicação e geração de feeds. Schemas de validação poderão ser adotados quando trouxerem benefícios concretos.
+As páginas institucionais e os índices do blog serão mantidos em Markdown, sem frontmatter ou schema obrigatórios. O conteúdo incluirá os links de navegação, retorno ao início e troca manual de idioma. Os metadados HTML permanecerão sob responsabilidade das rotas e layouts Astro.
+
+Os artigos poderão utilizar frontmatter mínimo para informações necessárias à publicação, SEO e geração de feeds. Schemas de validação serão adotados somente quando houver necessidade concreta.
 
 Evitar armazenar apresentações, experiências, artigos ou textos extensos em objetos TypeScript ou JSON.
 
