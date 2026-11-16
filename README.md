@@ -113,9 +113,8 @@ O hub será extremamente minimalista, semelhante em simplicidade a uma página H
 **Conteúdo:**
 
 - Nome e identificação pessoal.
-- Links para as principais seções do site.
+- Links para as principais seções e alternância de idioma, definidos no Markdown de cada hub.
 - Contatos e perfis externos relevantes.
-- Alternância de idioma.
 - Link para o endereço onion existente.
 
 **Direção visual:**
@@ -329,8 +328,8 @@ joaofogaca.com/
 
 ### 5.1. Responsabilidades
 
-- **`src/content/`:** conteúdo editorial e institucional em Markdown.
-- **`src/pages/`:** definição das rotas e associação entre conteúdo e apresentação.
+- **`src/content/`:** conteúdo editorial e institucional em Markdown, incluindo a apresentação e os links de navegação dos hubs.
+- **`src/pages/`:** definição das rotas, seleção do conteúdo por idioma, renderização e associação com os layouts.
 - **`src/layouts/`:** estruturas HTML reutilizáveis, sem impor uma identidade visual única.
 - **`src/styles/`:** estilos separados conforme a necessidade de cada seção.
 - **`src/content.config.ts`:** definição e validação das coleções de conteúdo.
@@ -347,7 +346,7 @@ O arquivo `src/pages/index.astro` servirá como fallback estático para a raiz, 
 
 Utilizar Astro Content Collections com o carregador `glob()` para organizar os artigos e os textos institucionais.
 
-Cada arquivo Markdown deverá conter somente os metadados necessários à sua finalidade.
+As páginas institucionais podem ser escritas em Markdown sem frontmatter ou schema, com os metadados HTML definidos pelas rotas e layouts Astro. Os artigos do blog poderão utilizar frontmatter apenas para os dados necessários à organização, publicação e geração de feeds. Schemas de validação poderão ser adotados quando trouxerem benefícios concretos.
 
 Evitar armazenar apresentações, experiências, artigos ou textos extensos em objetos TypeScript ou JSON.
 

@@ -5,6 +5,7 @@ interface Props {
   lang: 'pt' | 'en';
   title: string;
   description?: string;
+  alternatePath?: string;
   noindex?: boolean;
 }
 
@@ -12,15 +13,22 @@ const {
   lang,
   title,
   description,
+  alternatePath,
   noindex = false,
 } = Astro.props;
 
 const htmlLang = lang === 'pt' ? 'pt-BR' : 'en';
 
 const canonical = new URL(
-  Astro.url.pathname,
+  Astro.url.pathname.replace(/\.html$/, ''),
   Astro.site
 ).toString();
+
+const alternate = alternatePath
+  ? new URL(alternatePath, Astro.site).toString()
+  : undefined;
+
+const otherLang = lang === 'pt' ? 'en' : 'pt-BR';
 ---
 
 <!doctype html>
@@ -39,6 +47,21 @@ const canonical = new URL(
       <meta name="robots" content="noindex, follow" />
     ) : (
       <link rel="canonical" href={canonical} />
+    )}
+
+    {alternate && !noindex && (
+      <>
+        <link
+          rel="alternate"
+          hreflang={htmlLang}
+          href={canonical}
+        />
+        <link
+          rel="alternate"
+          hreflang={otherLang}
+          href={alternate}
+        />
+      </>
     )}
   </head>
 
