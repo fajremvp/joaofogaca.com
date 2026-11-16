@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  lang: 'pt' | 'en';
+  title: string;
+  alternatePath: string;
+}
+
+const { lang, title, alternatePath } = Astro.props;
+
+const pt = lang === 'pt';
+---
+
+<BaseLayout lang={lang} title={title} noindex>
+  <main>
+    <p>
+      <a href={`/${lang}`}>
+        {pt ? 'Início' : 'Home'}
+      </a>
+    </p>
+
+    <h1>{title}</h1>
+
+    <p>
+      {pt
+        ? 'Conteúdo em preparação.'
+        : 'Content in preparation.'}
+    </p>
+
+    <nav aria-label={pt ? 'Idioma' : 'Language'}>
+      <a
+        href={alternatePath}
+        lang={pt ? 'en' : 'pt-BR'}
+        hreflang={pt ? 'en' : 'pt-BR'}
+      >
+        {pt ? 'English' : 'Português'}
+      </a>
+    </nav>
+  </main>
+</BaseLayout>
