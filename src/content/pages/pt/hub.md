@@ -1,6 +1,6 @@
 # João Fogaça
 
-Também conhecido na internet como Fajre.
+Também conhecido na internet como Fajre
 
 ## Navegação
 
@@ -12,7 +12,7 @@ Também conhecido na internet como Fajre.
 
 ## Contato
 
-- [eu@joaofogaca.com](mailto:eu@joaofogaca.com).
+- [eu@joaofogaca.com](mailto:eu@joaofogaca.com)
 - [SimpleX Chat](https://smp14.simplex.im/a#J67Nzetqn5zkzqu7UzZB1YJPl8Usxa-VJNqCg6oIi6o)
 
 ## Outros links
@@ -28,6 +28,4 @@ Também conhecido na internet como Fajre.
 
 Também disponível no Tor: 4pxhc3ncqn22tbcp3ohvavuwhcggfrsbyshvqodlraayxudpzi6bvdyd.onion
 
----
-
-Idioma: [English](/en)
+Also available in [English](/en)

@@ -1,6 +1,6 @@
 # João Fogaça
 
-Also known online as Fajre.
+Also known online as Fajre
 
 ## Navigation
 
@@ -28,6 +28,4 @@ Also known online as Fajre.
 
 Also available on Tor: 4pxhc3ncqn22tbcp3ohvavuwhcggfrsbyshvqodlraayxudpzi6bvdyd.onion
 
----
-
-Language: [Português](/pt)
+Também disponível em [Português](/pt)
