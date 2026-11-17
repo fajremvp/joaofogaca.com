@@ -367,7 +367,7 @@ Exemplos:
 - `/keys/public.asc`
 - `/robots.txt`
 
-O arquivo Nostr e os cabeçalhos necessários à validação NIP-05 deverão ser preservados da implantação anterior.
+A identificação Nostr NIP-05 utiliza `public/.well-known/nostr.json`, com os identificadores `fajre` e `_` associados à mesma chave pública. O arquivo `public/_headers` configura CORS para permitir a consulta por clientes externos.
 
 O certificado público OpenPGP deverá ser verificado antes da publicação e atualizado quando houver alterações relevantes nas chaves, subchaves, expiração ou revogação. O WKD será implementado e validado separadamente.
 
