@@ -30,3 +30,15 @@ img {
 pre {
   overflow-x: auto;
 }
+
+main img[src^="/images/qr-"] {
+  display: block;
+  width: min(100%, 16rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+:not(pre) > code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

@@ -1,9 +1,23 @@
 ---
-import ComingSoon from '../../components/ComingSoon.astro';
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entry = await getEntry('pages', 'pt/pagamentos');
+
+if (!entry) {
+  throw new Error('Página de pagamentos não encontrada.');
+}
+
+const { Content } = await render(entry);
 ---
 
-<ComingSoon
+<BaseLayout
   lang="pt"
-  title="Pagamentos"
+  title="Pagamentos e Doações"
+  description="Formas de apoiar os projetos e o trabalho de João Fogaça por Bitcoin, Lightning, Monero e Pix."
   alternatePath="/en/payments"
-/>
+>
+  <main>
+    <Content />
+  </main>
+</BaseLayout>
