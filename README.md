@@ -292,6 +292,7 @@ joaofogaca.com/
 │   │
 │   ├── pages/
 │   │   ├── index.astro
+│   │   ├── 404.astro
 │   │   ├── [lang].astro
 │   │   ├── [lang]/
 │   │   │   ├── cv.astro
