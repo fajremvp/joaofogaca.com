@@ -224,11 +224,10 @@ As páginas `/pt/keys` e `/en/keys` deverão disponibilizar:
 
 - Certificado público OpenPGP completo, para consulta e download.
 - Fingerprint da chave primária.
-- Instruções de importação e verificação, talvez um link para um post no próprio blog sobre.
 - Orientações para confirmar a identidade por referências independentes.
 - Informações sobre WKD, quando implementado.
 
-A apresentação será localizada, mas o certificado público poderá ser um único arquivo compartilhado.
+Um único certificado público OpenPGP será compartilhado entre as duas páginas, contendo a chave primária de certificação, as subchaves públicas de assinatura e criptografia e seus vínculos criptográficos. O fingerprint primário será a referência principal de identificação, e os fingerprints das subchaves também serão apresentados.
 
 **Princípio de autenticidade:**
 
@@ -263,7 +262,7 @@ joaofogaca.com/
 │   │   ├── nostr.json
 │   │   └── openpgpkey/              # Futuro WKD
 │   ├── keys/
-│   │   └── public.asc               # Futuro certificado público
+│   │   └── public.asc               # Certificado público OpenPGP
 │   ├── images/
 │   ├── _headers
 │   ├── _routes.json
@@ -370,7 +369,7 @@ Exemplos:
 
 O arquivo Nostr e os cabeçalhos necessários à validação NIP-05 deverão ser preservados da implantação anterior.
 
-O diretório WKD e o certificado público só deverão ser publicados depois da verificação de sua configuração.
+O certificado público OpenPGP deverá ser verificado antes da publicação e atualizado quando houver alterações relevantes nas chaves, subchaves, expiração ou revogação. O WKD será implementado e validado separadamente.
 
 ## 6. Publicação e migração
 

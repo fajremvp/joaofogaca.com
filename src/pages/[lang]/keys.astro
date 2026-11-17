@@ -1,5 +1,6 @@
 ---
-import ComingSoon from '../../components/ComingSoon.astro';
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export function getStaticPaths() {
   return [
@@ -8,11 +9,27 @@ export function getStaticPaths() {
   ];
 }
 
-const pt = Astro.params.lang === 'pt';
+const lang = Astro.params.lang === 'pt' ? 'pt' : 'en';
+const pt = lang === 'pt';
+
+const entry = await getEntry('pages', `${lang}/keys`);
+
+if (!entry) {
+  throw new Error(`Keys page not found: ${lang}`);
+}
+
+const { Content } = await render(entry);
 ---
 
-<ComingSoon
-  lang={pt ? 'pt' : 'en'}
-  title={pt ? 'Identidade criptográfica' : 'Cryptographic identity'}
+<BaseLayout
+  lang={lang}
+  title={pt ? 'Identidade criptográfica' : 'Cryptographic Identity'}
+  description={pt
+    ? 'Certificado público OpenPGP, fingerprints e informações de verificação de João Fogaça.'
+    : 'João Fogaça’s public OpenPGP certificate, fingerprints, and verification information.'}
   alternatePath={pt ? '/en/keys' : '/pt/keys'}
-/>
+>
+  <main>
+    <Content />
+  </main>
+</BaseLayout>
