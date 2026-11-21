@@ -1,5 +1,6 @@
 ---
-import ComingSoon from '../../components/ComingSoon.astro';
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export function getStaticPaths() {
   return [
@@ -8,11 +9,27 @@ export function getStaticPaths() {
   ];
 }
 
-const pt = Astro.params.lang === 'pt';
+const lang = Astro.params.lang === 'pt' ? 'pt' : 'en';
+const pt = lang === 'pt';
+
+const entry = await getEntry('pages', `${lang}/cv`);
+
+if (!entry) {
+  throw new Error(`CV page not found: ${lang}`);
+}
+
+const { Content } = await render(entry);
 ---
 
-<ComingSoon
-  lang={pt ? 'pt' : 'en'}
+<BaseLayout
+  lang={lang}
   title={pt ? 'Currículo' : 'CV'}
+  description={pt
+    ? 'Currículo de João Vitor Fogaça de Oliveira: formação, experiências profissionais, projetos e habilidades.'
+    : 'João Vitor Fogaça de Oliveira: education, professional experience, projects, and skills.'}
   alternatePath={pt ? '/en/cv' : '/pt/cv'}
-/>
+>
+  <main>
+    <Content />
+  </main>
+</BaseLayout>

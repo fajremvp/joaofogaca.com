@@ -137,13 +137,19 @@ Os dois endereços pertencem à mesma infraestrutura de e-mail e não representa
 
 ### 4.2. Currículo
 
-Uma breve apresentação, experiências, projetos relevantes, formação e competências.
+Currículo público, geral e bilíngue, disponível em `/pt/cv` e `/en/cv`, com conteúdo mantido em Markdown.
+
+A página apresenta identificação e contatos profissionais, experiências, formação acadêmica, projetos relevantes, habilidades e idiomas.
 
 Priorizar clareza, verificabilidade e leitura rápida. O currículo deve atender recrutadores e potenciais parceiros sem se transformar em um inventário extenso de ferramentas.
 
-A apresentação deve ser documental e acessível, com conteúdo mantido preferencialmente em Markdown.
+A versão pública não exige um resumo profissional específico. Currículos em PDF poderão ser preparados e adaptados para oportunidades concretas, com seleção de experiências, competências e uma apresentação direcionada quando pertinente.
 
-Não incluir experiências, títulos ou resultados que não possam ser demonstrados.
+Certificações, publicações científicas e contribuições relevantes a projetos open source poderão ser incluídas conforme existirem resultados verificáveis, preferencialmente acompanhados de referências públicas.
+
+A apresentação deve permanecer documental, acessível e consistente entre os idiomas, sem exigir que as duas versões sejam traduções literais.
+
+Não incluir experiências, títulos, níveis de proficiência ou resultados que não possam ser demonstrados.
 
 ### 4.3. Consultoria
 
