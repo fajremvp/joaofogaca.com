@@ -410,7 +410,7 @@ Utilizar branches de trabalho quando apropriado, preservando a estabilidade da b
 
 Manter deploy automatizado via integração Git.
 
-**Configuração planejada:**
+**Configuração de produção:**
 
 | Campo | Valor |
 |---|---|
@@ -428,39 +428,60 @@ As Pages Functions devem atuar apenas nas rotas necessárias. Não encaminhar to
 
 ### 6.3. Rede Tor
 
-Preservar o endereço onion já existente.
+A versão onion de `joaofogaca.com` é hospedada no Homelab, independentemente do Cloudflare Pages.
 
-A infraestrutura atual utiliza o Homelab e um fluxo Git separado para gerar e distribuir a versão estática no serviço onion.
+**Endereço:** `4pxhc3ncqn22tbcp3ohvavuwhcggfrsbyshvqodlraayxudpzi6bvdyd.onion`
 
-A adaptação ocorrerá **depois da migração inicial para o Cloudflare Pages**.
+**Arquitetura:**
 
-O serviço onion deverá:
+- Nginx servindo os arquivos estáticos gerados pelo Astro.
+- Tor como serviço onion, utilizando uma identidade persistente.
+- Docker Compose para execução e isolamento dos containers.
+- Git bare e hook `post-receive` para compilação automática após push SSH.
 
-- Servir conteúdo estático independentemente da Cloudflare.
-- Preservar as rotas localizadas e os recursos públicos.
-- Permitir acesso manual a português e inglês.
-- Reproduzir ou adaptar a negociação de idioma na raiz, quando viável.
-- Continuar funcionando com JavaScript desativado.
+O fluxo de publicação utiliza dois destinos independentes:
 
-Até a atualização, a implantação onion anterior poderá continuar acessível, sem ser apresentada como versão necessariamente idêntica à nova.
+| Destino | Comando | Resultado |
+|---|---|---|
+| Clearnet | `git push origin main` | Publicação automática pelo Cloudflare Pages |
+| Onion | `git push homelab main` | Build estático no DockerHost e entrega pelo Nginx/Tor |
 
-### 6.4. Migração para produção
+O hook utiliza `node:24.19.0-alpine` para executar `npm ci` e `npm run build`, sem depender do ambiente de compilação da Cloudflare.
 
-**A primeira publicação não depende da conclusão de todas as seções.**
+**Diferenças entre os ambientes:**
 
-O lançamento inicial deverá incluir:
+- Na Cloudflare, Pages Functions negociam o idioma automaticamente pelo cabeçalho `Accept-Language`.
+- No onion, a raiz `/` serve uma página estática com links para `/pt` e `/en`, permitindo escolher o idioma manualmente.
+- As páginas localizadas, recursos públicos, certificado OpenPGP e NIP-05 são servidos estaticamente nos dois ambientes.
+- O Nginx oferece URLs sem extensão `.html` e página 404 própria.
+- O serviço onion funciona sem JavaScript no navegador e não depende da disponibilidade da Cloudflare.
 
-- Hubs `/pt` e `/en` funcionais.
-- Navegação entre idiomas.
-- Todas as rotas principais definidas.
-- Páginas incompletas com mensagens discretas de “Em breve” e “Coming soon” (Em breve).
-- Redirecionamento por idioma funcionando na Cloudflare.
-- Metadados e acessibilidade básicos.
-- Preservação dos arquivos de validação existentes.
+As configurações da infraestrutura estão documentados no repositório [homelab](https://github.com/fajremvp/homelab).
 
-O novo projeto será testado localmente antes de assumir `joaofogaca.com`.
+### 6.4. Publicação em produção
 
-Após a publicação inicial, currículo, consultoria, blog, pagamentos e identidade criptográfica serão desenvolvidos progressivamente.
+A versão inicial de `joaofogaca.com` foi publicada em 21/11/2026, substituindo o portfólio baseado no Shellfolio.
+
+**Ambientes de produção:**
+
+- **Clearnet:** Cloudflare Pages, com domínio `https://joaofogaca.com`.
+- **Onion:** DockerHost do Homelab, mantendo o endereço onion v3 existente.
+
+O projeto utiliza a branch `main` como origem das publicações.
+
+A implantação inicial incluiu:
+
+- Hubs localizados em português e inglês.
+- Currículo, páginas de pagamentos e identidade criptográfica.
+- Rotas de blog e consultoria com conteúdo provisório.
+- Navegação e alternância manual de idioma.
+- Redirecionamentos por idioma no Cloudflare Pages.
+- Entrega estática de páginas e recursos na rede Tor.
+- Publicação do certificado público OpenPGP e da identificação Nostr NIP-05.
+
+As Pages Functions e o Nginx possuem configurações distintas para o roteamento, preservando a geração estática do conteúdo.
+
+As próximas etapas concentram-se na conclusão das páginas de consultoria e do blog, além das melhorias de conteúdo, acessibilidade, SEO e manutenção operacional.
 
 ## 7. Qualidade
 
