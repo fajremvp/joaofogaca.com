@@ -90,9 +90,7 @@ Caminhos conhecidos sem prefixo, como `/cv`, `/blog`, `/consultorias`, `/consult
 
 Restringir a execução das Pages Functions às rotas necessárias com `public/_routes.json`, evitando processamento desnecessário de páginas e recursos estáticos.
 
-A raiz `/` também deverá possuir uma página HTML estática mínima de fallback, com acesso manual aos dois idiomas, para ambientes sem a função de redirecionamento. Na Cloudflare, a Function terá responsabilidade pelo redirecionamento automático.
-
-O comportamento na rede Tor será adaptado posteriormente, sem depender da Cloudflare.
+Na Cloudflare, a raiz `/` é tratada por uma Pages Function, que negocia o idioma conforme Accept-Language, utilizando inglês como fallback. No serviço onion, o Nginx redireciona `/` para `/en`, mantendo a seleção manual de português e inglês nas páginas localizadas.
 
 ### 3.2. SEO internacional
 
@@ -296,7 +294,6 @@ joaofogaca.com/
 │   │           └── example-article.md
 │   │
 │   ├── pages/
-│   │   ├── index.astro
 │   │   ├── 404.astro
 │   │   ├── [lang].astro
 │   │   ├── [lang]/
@@ -345,8 +342,6 @@ joaofogaca.com/
 As rotas dinâmicas do Astro deverão utilizar `getStaticPaths()` para gerar as páginas durante o build.
 
 A internacionalização poderá compartilhar componentes quando isso reduzir duplicação, mas não deverá exigir que todas as páginas utilizem o mesmo layout.
-
-O arquivo `src/pages/index.astro` servirá como fallback estático para a raiz, enquanto a Cloudflare Pages Function realizará o redirecionamento por idioma na hospedagem principal.
 
 ### 5.2. Conteúdo Markdown
 
@@ -451,7 +446,7 @@ O hook utiliza `node:24.19.0-alpine` para executar `npm ci` e `npm run build`, s
 **Diferenças entre os ambientes:**
 
 - Na Cloudflare, Pages Functions negociam o idioma automaticamente pelo cabeçalho `Accept-Language`.
-- No onion, a raiz `/` serve uma página estática com links para `/pt` e `/en`, permitindo escolher o idioma manualmente.
+- No onion, a raiz / redireciona temporariamente para /en, mantendo o inglês como idioma padrão e permitindo que o visitante selecione português manualmente.
 - As páginas localizadas, recursos públicos, certificado OpenPGP e NIP-05 são servidos estaticamente nos dois ambientes.
 - O Nginx oferece URLs sem extensão `.html` e página 404 própria.
 - O serviço onion funciona sem JavaScript no navegador e não depende da disponibilidade da Cloudflare.
