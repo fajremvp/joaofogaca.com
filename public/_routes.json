@@ -6,8 +6,8 @@
     "/blog",
     "/consultorias",
     "/consulting",
-    "/pagamentos",
-    "/payments",
+    "/doacoes",
+    "/donations",
     "/keys"
   ],
   "exclude": []

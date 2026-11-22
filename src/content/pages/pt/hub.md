@@ -7,7 +7,7 @@ Também conhecido na internet como Fajre
 - [Currículo](/pt/cv)
 - [Consultorias](/pt/consultorias)
 - [Blog](/pt/blog)
-- [Pagamentos e Doações](/pt/pagamentos)
+- [Doações](/pt/doacoes)
 - [Chaves públicas](/pt/keys)
 
 ## Contato

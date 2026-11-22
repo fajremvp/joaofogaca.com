@@ -1,0 +1,23 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entry = await getEntry('pages', 'pt/doacoes');
+
+if (!entry) {
+  throw new Error('Página de doações não encontrada.');
+}
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  lang="pt"
+  title="Doações"
+  description="Apoie os projetos e o trabalho de João Fogaça com doações em Bitcoin, Lightning, Monero ou Pix."
+  alternatePath="/en/donations"
+>
+  <main>
+    <Content />
+  </main>
+</BaseLayout>

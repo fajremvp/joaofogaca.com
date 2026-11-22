@@ -7,7 +7,7 @@ Also known online as Fajre
 - [CV](/en/cv)
 - [Consulting](/en/consulting)
 - [Blog](/en/blog)
-- [Payments & Donations](/en/payments)
+- [Donations](/en/donations)
 - [Public keys](/en/keys)
 
 ## Contact

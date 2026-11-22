@@ -17,13 +17,13 @@ const routes = {
     pt: 'consultorias',
     en: 'consulting',
   },
-  pagamentos: {
-    pt: 'pagamentos',
-    en: 'payments',
+  doacoes: {
+    pt: 'doacoes',
+    en: 'donations',
   },
-  payments: {
-    pt: 'pagamentos',
-    en: 'payments',
+  donations: {
+    pt: 'doacoes',
+    en: 'donations',
   },
   keys: {
     pt: 'keys',

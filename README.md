@@ -54,7 +54,7 @@ Todas as páginas de conteúdo utilizam prefixos explícitos de idioma. Não hav
 | Currículo | `/pt/cv` | `/en/cv` |
 | Consultoria | `/pt/consultorias` | `/en/consulting` |
 | Blog | `/pt/blog` | `/en/blog` |
-| Pagamentos | `/pt/pagamentos` | `/en/payments` |
+| Doações | `/pt/doacoes` | `/en/donations` |
 | Identidade criptográfica | `/pt/keys` | `/en/keys` |
 
 Os artigos utilizam:
@@ -86,7 +86,7 @@ A negociação deverá respeitar a ordem de preferência e os pesos `q` do cabe�
 
 Utilizar redirecionamentos temporários (`302`), `Cache-Control: no-store` e `Vary: Accept-Language`, verificando também as regras de cache configuradas na Cloudflare.
 
-Caminhos conhecidos sem prefixo, como `/cv`, `/blog`, `/consultorias`, `/consulting`, `/pagamentos`, `/payments` e `/keys`, poderão redirecionar para as rotas localizadas correspondentes. Não criar conteúdo duplicado nesses caminhos. URLs desconhecidas devem continuar retornando `404`.
+Caminhos conhecidos sem prefixo, como `/cv`, `/blog`, `/consultorias`, `/consulting`, `/doacoes`, `/donations` e `/keys`, redirecionam para as rotas localizadas correspondentes. Não criar conteúdo duplicado nesses caminhos. URLs desconhecidas devem continuar retornando `404`.
 
 Restringir a execução das Pages Functions às rotas necessárias com `public/_routes.json`, evitando processamento desnecessário de páginas e recursos estáticos.
 
@@ -209,18 +209,18 @@ Prever feed RSS por idioma e sitemap. Categorias e paginação só deverão ser 
 
 Não utilizar sistema de comentários por padrão.
 
-### 4.5. Pagamentos e doações
+### 4.5. Doações
 
-Página estática com informações e QR codes de:
+Páginas estáticas em português e inglês destinadas a contribuições voluntárias, com endereços e QR codes para:
 
 - Bitcoin.
 - Lightning.
 - Monero.
 - Pix.
 
-Distinguir contribuições voluntárias de eventuais pagamentos comerciais.
+Os endereços e as chaves de recebimento devem estar disponíveis em texto selecionável, acompanhados de QR codes. Não adicionar JavaScript apenas para oferecer botões de cópia automática.
 
-Os endereços devem estar disponíveis em texto selecionável, com QR codes e links de pagamento quando os protocolos permitirem. Não adicionar JavaScript apenas para oferecer botões de cópia automática.
+Os endereços públicos de doação não serão utilizados como instruções de cobrança por serviços. Pagamentos comerciais serão tratados individualmente, podendo utilizar endereços específicos por transação em criptomoedas.
 
 Nunca incluir chaves privadas, seeds, credenciais financeiras ou outros dados sensíveis no repositório.
 
@@ -281,13 +281,13 @@ joaofogaca.com/
 │   │   │   │   ├── hub.md
 │   │   │   │   ├── cv.md
 │   │   │   │   ├── blog.md
-│   │   │   │   ├── pagamentos.md
+│   │   │   │   ├── doacoes.md
 │   │   │   │   └── keys.md
 │   │   │   └── en/
 │   │   │       ├── hub.md
 │   │   │       ├── cv.md
 │   │   │       ├── blog.md
-│   │   │       ├── payments.md
+│   │   │       ├── donations.md
 │   │   │       └── keys.md
 │   │   └── blog/
 │   │       ├── pt/
@@ -307,10 +307,10 @@ joaofogaca.com/
 │   │   │       └── [...slug].astro
 │   │   ├── pt/
 │   │   │   ├── consultorias.astro
-│   │   │   └── pagamentos.astro
+│   │   │   └── doacoes.astro
 │   │   └── en/
 │   │       ├── consulting.astro
-│   │       └── payments.astro
+│   │       └── donations.astro
 │   │
 │   ├── layouts/
 │   │   ├── BaseLayout.astro
@@ -395,7 +395,7 @@ O projeto utiliza Conventional Commits:
 - `ci`: automação e integração contínua.
 - `chore`: manutenção geral e dependências.
 
-Escopos opcionais incluem `hub`, `cv`, `consulting`, `blog`, `payments`, `keys`, `i18n`, `seo` e `deploy`.
+Escopos opcionais incluem `hub`, `cv`, `consulting`, `blog`, `donations`, `keys`, `i18n`, `seo` e `deploy`.
 
 Exemplos:
 
@@ -472,7 +472,7 @@ O projeto utiliza a branch `main` como origem das publicações.
 A implantação inicial incluiu:
 
 - Hubs localizados em português e inglês.
-- Currículo, páginas de pagamentos e identidade criptográfica.
+- Currículo, páginas de doações e identidade criptográfica.
 - Rotas de blog e consultoria com conteúdo provisório.
 - Navegação e alternância manual de idioma.
 - Redirecionamentos por idioma no Cloudflare Pages.
@@ -552,7 +552,7 @@ Não adicionar MCP, APIs, autenticação ou outros protocolos apenas para obter 
 - Utilizar HTTPS e cabeçalhos de segurança adequados.
 - Preservar a configuração DNSSEC existente.
 - Evitar formulários e coleta de dados sem necessidade.
-- Avaliar implicações de privacidade dos endereços de pagamento.
+- Avaliar implicações de privacidade dos endereços públicos de doação.
 
 ## 8. Desenvolvimento e validação
 
